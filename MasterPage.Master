@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head runat="server">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body id="page-top">
+
     <form id="form1" runat="server">
+            <asp:ScriptManager runat="server"></asp:ScriptManager>
 
         <!-- Page Wrapper -->
         <div id="wrapper">

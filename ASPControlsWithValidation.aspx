@@ -1,11 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ASPControlsWithValidation.aspx.cs" Inherits="WebDevRequirementsExamples.ASPControlsWithValidation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ASPControlsWithValidation.aspx.cs" Inherits="WebDevRequirementsExamples.ASPControlsWithValidation" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h4 class="mb-0">ASP.Net Controls with Client Side Validation</h4>
+                <h4 class="mb-0">ASP.Net Controls with Client Side Validation using JavaScript</h4>
             </div>
             <div class="card-body">
                 <asp:UpdatePanel runat="server">
@@ -19,7 +20,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="font-weight-bold">DropDown</label>
+                                    <label class="font-weight-bold">DropDown List</label>
                                     <asp:DropDownList runat="server" ID="ddList" CssClass="form-control">
                                         <asp:ListItem Value="0">--Select--</asp:ListItem>
                                         <asp:ListItem Value="1">DropDownList Item One</asp:ListItem>
@@ -29,7 +30,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="font-weight-bold">Radio Button List</label>
+                                    <label class="font-weight-bold">RadioButton List</label>
                                     <asp:RadioButtonList runat="server" ID="rBtnList" CssClass="">
                                         <asp:ListItem Value="1">RadioButtonList Item One</asp:ListItem>
                                         <asp:ListItem Value="2">RadioButtonList Item Two</asp:ListItem>
@@ -37,7 +38,8 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <asp:Button Text="Validate" runat="server" ID="btnValidate" CssClass="btn btn-primary" OnClientClick="return Validate();" />
+                                <asp:Button Text="Validate" runat="server" ID="btnValidate" CssClass="btn btn-primary" />
+                                <input type="button" id="btnReset" class="btn btn-secondary" value="Reset"/>
                             </div>
                         </div>
                     </ContentTemplate>
@@ -49,11 +51,18 @@
         </div>
     </div>
 
-    <script>
-        function Validate() {
-            var txtBox = document.getElementById("<%=txtBox.ClientID%>");
-            var ddList = document.getElementById("<%=ddList.ClientID%>");
 
+    <script>
+
+        var txtBox = document.getElementById("<%=txtBox.ClientID%>");
+        var ddList = document.getElementById("<%=ddList.ClientID%>");
+        var rb = document.getElementById("<%=rBtnList.ClientID%>");
+        var radioBtnList = rb.getElementsByTagName("input");
+        var radioBtnListLabel = rb.getElementsByTagName("label");
+        var checkedValue = '';
+        var checkedText = '';
+
+        function Validate() {
             if (txtBox.value == "") {
                 alert("Please enter something in the TextBox!!");
                 txtBox.focus();
@@ -68,36 +77,29 @@
             var rdbtn = getCheckedRadioButton();
 
             if (rdbtn) {
-                var checkedValue = '';
-                var checkedText = '';
-                var rb = document.getElementById("<%=rBtnList.ClientID%>");
-                var radioBtnList = rb.getElementsByTagName("input");
 
-                radioBtnList.forEach(function (radio) {
-                    if (radio.checked) {
-                        checkedValue = radio.value;
-                        checkedText = radio.textContent || radio.innerHTML;
-                    }
-                });
-                for (var i = 0; i < radio.length; i++) {
+                for (var i = 0; i < radioBtnList.length; i++) {
                     if (radioBtnList[i].checked) {
-                        checkedText = radioBtnList.value;
+                        //checkedValue = radioBtnListLabel[i].value;
+                        checkedText = radioBtnListLabel[i].innerText;
                         break;
                     }
                 }
 
-                alert("TextBox value is : " + txtBox.value + " | DropDownList item is : " + ddList.options[ddList.selectedIndex].innerHTML + " | RadioButtonList item is : " + checkedText);
+                return true;
+
+                //alert("TextBox value is : " + txtBox.value + " | DropDownList item is : " + ddList.options[ddList.selectedIndex].innerHTML + " | RadioButtonList item is : " + checkedText);
+            }
+            else {
+                return false;
             }
 
-            return true;
         }
 
         function getCheckedRadioButton() {
-            var rb = document.getElementById("<%=rBtnList.ClientID%>");
-            var radio = rb.getElementsByTagName("input");
             var isChecked = false;
-            for (var i = 0; i < radio.length; i++) {
-                if (radio[i].checked) {
+            for (var i = 0; i < radioBtnList.length; i++) {
+                if (radioBtnList[i].checked) {
                     isChecked = true;
                     break;
                 }
@@ -109,6 +111,26 @@
             return isChecked;
         }
 
+        var btnValidate = document.getElementById("<%=btnValidate.ClientID%>");
+        btnValidate.addEventListener("click", function (event) {
+            event.preventDefault();
+            if (Validate()) {
+                swal("Input Details", "TextBox value is : " + txtBox.value + " | DropDownList item is : " + ddList.options[ddList.selectedIndex].innerHTML + " | RadioButtonList item is : " + checkedText, "success");
+            }
+        });
+
+        //Reset Button
+        var btnReset = document.getElementById("btnReset");
+        btnReset.addEventListener('click', function () {
+            txtBox.value = '';
+            ddList.value = '0';
+            for (var i = 0; i < radioBtnList.length; i++) {
+                if (radioBtnList[i].checked) {
+                    radioBtnList[i].checked = false;
+                    break;
+                }
+            }
+        });
 
     </script>
 </asp:Content>

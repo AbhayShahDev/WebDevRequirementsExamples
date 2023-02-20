@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header text-center">
                 <h4 class="mb-0">ASP.Net Controls with Client Side Validation using JavaScript</h4>
             </div>
             <div class="card-body">
@@ -80,15 +80,12 @@
 
                 for (var i = 0; i < radioBtnList.length; i++) {
                     if (radioBtnList[i].checked) {
-                        //checkedValue = radioBtnListLabel[i].value;
                         checkedText = radioBtnListLabel[i].innerText;
                         break;
                     }
                 }
 
                 return true;
-
-                //alert("TextBox value is : " + txtBox.value + " | DropDownList item is : " + ddList.options[ddList.selectedIndex].innerHTML + " | RadioButtonList item is : " + checkedText);
             }
             else {
                 return false;

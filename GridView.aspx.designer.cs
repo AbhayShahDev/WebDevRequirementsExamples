@@ -11,16 +11,16 @@ namespace WebDevRequirementsExamples
 {
 
 
-    public partial class Default
+    public partial class GridView
     {
 
         /// <summary>
-        /// ChartJSControl control.
+        /// gdv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebDevRequirementsExamples.UserControls.ChartJSUserControl ChartJSControl;
+        protected global::System.Web.UI.WebControls.GridView gdv;
     }
 }

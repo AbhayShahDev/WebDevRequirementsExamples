@@ -11,7 +11,7 @@ namespace WebDevRequirementsExamples
 {
 
 
-    public partial class Default
+    public partial class ChartJS
     {
 
         /// <summary>

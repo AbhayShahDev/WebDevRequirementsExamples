@@ -54,6 +54,14 @@
                         <span>Form Validation</span></a>
                 </li>
 
+                <hr class="sidebar-divider my-0">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="ChartJS.aspx">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Chart JS</span></a>
+                </li>
+
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block">
 
@@ -105,7 +113,7 @@
                                 <!-- Dropdown - Messages -->
                                 <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                     aria-labelledby="searchDropdown">
-                                    <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="form-inline mr-auto w-100 navbar-search">
                                         <div class="input-group">
                                             <input type="text" class="form-control bg-light border-0 small"
                                                 placeholder="Search for..." aria-label="Search"
@@ -116,7 +124,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </li>
 

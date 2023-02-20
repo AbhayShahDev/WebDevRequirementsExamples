@@ -1746,6 +1746,11 @@
     <Content Include="assets\vendor\fontawesome-free\webfonts\fa-brands-400.svg" />
     <Content Include="assets\vendor\fontawesome-free\webfonts\fa-regular-400.svg" />
     <Content Include="assets\vendor\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="assets\vendor\HighCharts\accessibility.js" />
+    <Content Include="assets\vendor\HighCharts\coloraxis.js" />
+    <Content Include="assets\vendor\HighCharts\data.js" />
+    <Content Include="assets\vendor\HighCharts\highmaps.js" />
+    <Content Include="assets\vendor\HighCharts\marker-clusters.js" />
     <Content Include="assets\vendor\jquery-easing\jquery.easing.compatibility.js" />
     <Content Include="assets\vendor\jquery-easing\jquery.easing.js" />
     <Content Include="assets\vendor\jquery-easing\jquery.easing.min.js" />
@@ -1753,7 +1758,11 @@
     <Content Include="assets\vendor\jquery\jquery.min.js" />
     <Content Include="assets\vendor\jquery\jquery.slim.js" />
     <Content Include="assets\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="ChartJS.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="GridView.aspx" />
+    <Content Include="HighCharts.aspx" />
+    <Content Include="UserControls\ChartJSUserControl.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -1764,6 +1773,13 @@
     <Compile Include="ASPControlsWithValidation.aspx.designer.cs">
       <DependentUpon>ASPControlsWithValidation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChartJS.aspx.cs">
+      <DependentUpon>ChartJS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChartJS.aspx.designer.cs">
+      <DependentUpon>ChartJS.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DAL\DataAccessLayer.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -1773,6 +1789,20 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Domain\customers.cs" />
+    <Compile Include="GridView.aspx.cs">
+      <DependentUpon>GridView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GridView.aspx.designer.cs">
+      <DependentUpon>GridView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HighCharts.aspx.cs">
+      <DependentUpon>HighCharts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HighCharts.aspx.designer.cs">
+      <DependentUpon>HighCharts.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1781,6 +1811,13 @@
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\ChartJSUserControl.ascx.cs">
+      <DependentUpon>ChartJSUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ChartJSUserControl.ascx.designer.cs">
+      <DependentUpon>ChartJSUserControl.ascx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\scss\navs\_global.scss" />

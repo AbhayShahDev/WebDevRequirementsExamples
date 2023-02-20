@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -27,6 +28,17 @@ namespace WebDevRequirementsExamples.DAL
                 //using dapper
                 return con.Query<customers>(sql).ToList();
             }
+        }
+
+        public DataTable GetGridViewData()
+        {
+            DataTable dt = new DataTable();
+            using (var con = GetConnection())
+            {
+                SqlDataAdapter sda = new SqlDataAdapter("Proc_GetGridViewData", con);
+                sda.Fill(dt);
+            }
+            return dt;
         }
     }
 }

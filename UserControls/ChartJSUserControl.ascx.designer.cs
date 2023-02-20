@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebDevRequirementsExamples
+namespace WebDevRequirementsExamples.UserControls
 {
 
 
-    public partial class Default
+    public partial class ChartJSUserControl
     {
 
         /// <summary>
-        /// ChartJSControl control.
+        /// ltChartData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebDevRequirementsExamples.UserControls.ChartJSUserControl ChartJSControl;
+        protected global::System.Web.UI.WebControls.Literal ltChartData;
     }
 }

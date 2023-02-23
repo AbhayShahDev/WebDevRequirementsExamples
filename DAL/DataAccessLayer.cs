@@ -30,15 +30,40 @@ namespace WebDevRequirementsExamples.DAL
             }
         }
 
-        public DataTable GetGridViewData()
+        public DataSet GetGridViewData()
         {
-            DataTable dt = new DataTable();
-            using (var con = GetConnection())
+            DataSet ds = new DataSet();
+
+            try
             {
-                SqlDataAdapter sda = new SqlDataAdapter("Proc_GetGridViewData", con);
-                sda.Fill(dt);
+                //using (var con = GetConnection())
+                //{
+                //    SqlDataAdapter sda = new SqlDataAdapter("Proc_GetGridViewData", con);
+                //    sda.Fill(ds);
+                //}
+
+
+                //Another way
+                SqlCommand cmd = new SqlCommand("Proc_GetGridViewData", GetConnection());
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                sda.Fill(ds);
+                cmd.Dispose();
+                GetConnection().Close();
             }
-            return dt;
+            catch (Exception ex)
+            {
+                return ds = null;
+            }
+            finally
+            {
+                if (GetConnection().State == ConnectionState.Open)
+                {
+                    GetConnection().Close();
+                }
+            }
+
+            return ds;
         }
     }
 }

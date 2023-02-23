@@ -12,8 +12,22 @@ namespace WebDevRequirementsExamples
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataAccessLayer dataAccessLayer = new DataAccessLayer();
-            gdv.DataSource = dataAccessLayer.GetGridViewData();
+            if (!IsPostBack)
+            {
+                try
+                {
+                    DataAccessLayer dataAccessLayer = new DataAccessLayer();
+                    gdv.DataSource = dataAccessLayer.GetGridViewData();
+                    gdv.DataBind();
+                    //Required for jQuery DataTables to work.
+                    gdv.UseAccessibleHeader = true;
+                    gdv.HeaderRow.TableSection = TableRowSection.TableHeader;
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
     }
 }

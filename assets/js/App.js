@@ -1,11 +1,31 @@
 ﻿$(document).ready(function () {
     function validateInput(input) {
-        // Regular expression to match any special characters and SQL injection keywords
         var specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
         var sqlKeywords = /(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|UNION|TRUNCATE)/i;
 
-        // Check if the input contains any special characters or SQL injection keywords
         if (specialChars.test(input) || sqlKeywords.test(input)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function validateDescription(input) {
+        var specialCharsWithoutDot = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]/;
+        var sqlKeywords = /(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|UNION|TRUNCATE)/i;
+
+        if (specialCharsWithoutDot.test(input) || sqlKeywords.test(input)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function validateDate(input) {
+        var specialCharsWithoutHyphen = /[!@#$%^&*()_+\=\[\]{};':"\\|,<>\/?]/;
+        var sqlKeywords = /(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|UNION|TRUNCATE)/i;
+
+        if (specialCharsWithoutHyphen.test(input) || sqlKeywords.test(input)) {
             return true;
         } else {
             return false;
@@ -43,7 +63,7 @@
             $("#txtDescription").focus();
             return;
         }
-        else if (validateInput($("#txtDescription").val())) {
+        else if (validateDescription($("#txtDescription").val())) {
             alert("Please enter valid Description!!");
             $("#txtDescription").val("");
             $("#txtDescription").focus();
@@ -55,7 +75,7 @@
             $("#txtDate").focus();
             return;
         }
-        else if (validateInput($("#txtDate").val())) {
+        else if (validateDate($("#txtDate").val())) {
             alert("Please select or enter valid date!!");
             $("#txtDate").val("");
             $("#txtDate").focus();

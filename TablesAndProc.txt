@@ -1,0 +1,43 @@
+CREATE TABLE Tasks
+(
+	TasksID bigint identity(1,1) PRIMARY KEY NOT NULL,
+	UserName varchar(50) NOT NULL,
+	TaskTitle varchar(50) NOT NULL,
+	TaskDescription varchar(200) NOT NULL,
+	TaskCompletionDate datetime NOT NULL,
+	TaskStatus varchar(20) NOT NULL,
+	EntryBy varchar(20) NOT NULL,
+	EntryDate datetime Tasks
+)
+
+
+
+  CREATE PROC [dbo].[Task_InsertUpdateProc]
+  (
+	@UserName varchar(50),
+	@TaskTitle varchar(50),
+	@TaskDescription varchar(200),
+	@TaskCompletionDate datetime,
+	@TaskStatus varchar(20),
+	@EntryBy varchar(20),
+	@Msg Varchar(15) OUTPUT
+  )
+  AS
+  BEGIN
+	BEGIN TRAN
+	BEGIN TRY
+		BEGIN
+			
+			INSERT INTO [dbo].[Tasks] ([UserName],[TaskTitle],[TaskDescription],[TaskCompletionDate],[TaskStatus],[EntryBy],[EntryDate])
+			VALUES (@UserName, @TaskTitle, @TaskDescription, @TaskCompletionDate, @TaskStatus, @EntryBy, GETDATE())
+
+			SET @Msg = 'Success'
+
+		END
+		COMMIT
+	END TRY
+	BEGIN CATCH
+		ROLLBACK
+		SET @Msg = 'Failed'
+	END CATCH
+  END

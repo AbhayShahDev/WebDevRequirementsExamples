@@ -13,6 +13,7 @@ namespace WebDevRequirementsExamples.DAL
     public class DataAccessLayer
     {
         static string conStr = ConfigurationManager.AppSettings.Get("ConString").ToString();
+        static string conStrTwo = ConfigurationManager.AppSettings.Get("ASPExampleProject").ToString();
         public static SqlConnection GetConnection()
         {
             var conn = new SqlConnection(conStr);
@@ -40,6 +41,7 @@ namespace WebDevRequirementsExamples.DAL
                 //{
                 //    SqlDataAdapter sda = new SqlDataAdapter("Proc_GetGridViewData", con);
                 //    sda.Fill(ds);
+                //    GetConnection().Close();
                 //}
 
 
@@ -65,5 +67,45 @@ namespace WebDevRequirementsExamples.DAL
 
             return ds;
         }
+
+
+        public string InsertUpdateTasks(string username, string tasktitle, string description, string date, string status)
+        {
+            string msg = "";
+
+            SqlConnection con = new SqlConnection(conStrTwo);
+            try
+            {
+                SqlCommand cmd = new SqlCommand("Task_InsertUpdateProc", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("UserName", username);
+                cmd.Parameters.AddWithValue("TaskTitle", tasktitle);
+                cmd.Parameters.AddWithValue("TaskDescription", description);
+                cmd.Parameters.AddWithValue("TaskCompletionDate", date);
+                cmd.Parameters.AddWithValue("TaskStatus", status);
+                cmd.Parameters.AddWithValue("EntryBy", "Admin");
+                SqlParameter Sp2 = new SqlParameter("Msg", SqlDbType.VarChar, 1000);
+                Sp2.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(Sp2);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                msg = cmd.Parameters["Msg"].Value.ToString();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                return msg;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+
+            return msg;
+        }
+
     }
 }

@@ -33,7 +33,7 @@
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
-                    <div class="sidebar-brand-text mx-3">Admin</div>
+                    <div class="sidebar-brand-text mx-3">Dashboard</div>
                 </a>
 
                 <!-- Divider -->
@@ -68,6 +68,14 @@
                     <a class="nav-link" href="GridView.aspx">
                         <i class="fas fa-border-all"></i>
                         <span>Grid View</span></a>
+                </li>
+
+                <hr class="sidebar-divider my-0">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="TaskManager.aspx">
+                        <i class="fas fa-tasks"></i>
+                        <span>Manage Task</span></a>
                 </li>
 
                 <!-- Divider -->
@@ -323,18 +331,31 @@
     </a>
         
     <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="assets/js/sb-admin-2.min.js"></script>
     <script src="assets/vendor/chart.js/Chart.min.js"></script>
     <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="assets/js/App.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
             jQuery(".gdv").prepend($("<thead></thead>").append(jQuery(this).find("tr:first"))).dataTable({
                 "lengthMenu": [[10, 50, 100, 200, -1], [10, 50, 100, 200, "All"]],
                 "stateSave": true,
+                "language": {
+                    "emptyTable": "No data available"
+                }
             });
+            //jQuery("#taskTable").dataTable({
+            //    //"lengthMenu": [[10, 50, 100, 200, -1], [10, 50, 100, 200, "All"]],
+            //    "stateSave": true,
+            //    "language": {
+            //        "emptyTable": "No data available"
+            //    }
+            //});
         });
     </script>
 </body>

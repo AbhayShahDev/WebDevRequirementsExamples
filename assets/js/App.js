@@ -36,7 +36,7 @@
                 if (response.d == "success") {
                     swal("", "Data Submitted Successfully!!", "success");
                 }
-                else if (response.d == "success") {
+                else if (response.d == "failed") {
                     swal("", "Something went wrong!!", "danger");
                 }
                 $("#txtUserName").val("");

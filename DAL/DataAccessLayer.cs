@@ -21,6 +21,35 @@ namespace WebDevRequirementsExamples.DAL
             return conn;
         }
 
+
+        public static string filter_bad_chars_rep(string s)
+        {
+            if (s == null)
+            {
+                return "";
+            }
+            string[] sL_Char = {
+            "onfocus",  "\"\"", "=","onmouseover","prompt","%27","alert#","alert","'or","`or","`or`",   "'or'", "'='",  "`=`",  "'","`","9,9,9","src","onload", "select","drop",
+            "insert","delete","xp_","having","union","group","update","script", "<script","</script>",
+            "language",         "javascript",           "vbscript",         "http",         "~",            "$",            "<",            ">",            "%",            "\\",
+            ";",            "@",            "_",            "{",            "}",            "^",            "?",            "[",            "]",            "!",            "#",            "&",
+            "*"
+        };
+            int er = 0;
+            int sL_Char_Length = sL_Char.Length - 1;
+            while (sL_Char_Length >= 0)
+            {
+                if (s.Contains(sL_Char[sL_Char_Length]))
+                {
+                    s.Replace(sL_Char[sL_Char_Length], "");
+                    break; // TODO: might not be correct. Was : Exit While
+                }
+                sL_Char_Length -= 1;
+            }
+            return s.Trim();
+        }
+
+
         public static List<customers> FetchList()
         {
             string sql = "SELECT TOP(5) [city] as City, COUNT(customer_id) as TotalCustomers FROM [BikeStores].[sales].[customers] GROUP BY [state], city";
@@ -30,6 +59,7 @@ namespace WebDevRequirementsExamples.DAL
                 return con.Query<customers>(sql).ToList();
             }
         }
+
 
         public DataSet GetGridViewData()
         {

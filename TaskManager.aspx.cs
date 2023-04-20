@@ -24,7 +24,7 @@ namespace WebDevRequirementsExamples
             try
             {
                 DataAccessLayer dal = new DataAccessLayer();
-                msg = dal.InsertUpdateTasks(username, tasktitle, description, date, status);
+                msg = dal.InsertUpdateTasks(DataAccessLayer.filter_bad_chars_rep(username), DataAccessLayer.filter_bad_chars_rep(tasktitle), DataAccessLayer.filter_bad_chars_rep(description), DataAccessLayer.filter_bad_chars_rep(date), DataAccessLayer.filter_bad_chars_rep(status));
                 return msg.ToLower();
             }
             catch (Exception ex)

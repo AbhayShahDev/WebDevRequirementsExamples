@@ -112,7 +112,22 @@
         btnValidate.addEventListener("click", function (event) {
             event.preventDefault();
             if (Validate()) {
-                swal("Input Details", "TextBox value is : " + txtBox.value + " | DropDownList item is : " + ddList.options[ddList.selectedIndex].innerHTML + " | RadioButtonList item is : " + checkedText, "success");
+                swal({
+                    title: 'Do you want to save the changes?',
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: 'Save',
+                    denyButtonText: `Don't save`,
+                    buttons: true,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        swal('Saved!', '', 'success')
+                    } else if (result.isDenied) {
+                        swal('Changes are not saved', '', 'info')
+                    }
+                })
+                //swal("Input Details", "TextBox value is : " + txtBox.value + " | DropDownList item is : " + ddList.options[ddList.selectedIndex].innerHTML + " | RadioButtonList item is : " + checkedText, "success");
             }
         });
 

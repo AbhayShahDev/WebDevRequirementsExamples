@@ -175,8 +175,11 @@
     
         <asp:Literal runat="server" ID="ltChartData" />
 
+
     <script>
 
+        console.log(chartLabels);
+        console.log(chartData);
         // Bar Chart Example
         var ctxBarChart = document.getElementById("myBarChart");
         var ctxAreaChart = document.getElementById("myAreaChart");
